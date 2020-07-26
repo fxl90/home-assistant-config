@@ -1,19 +1,28 @@
 - alias: Attic Flood On
+  description: Send notification when Attic flood sensor is triggered.
   id: b963a09c-4ac6-43a0-b262-1e916045efc5
+  mode: single
   initial_state: true
+
   trigger:
-    platform: state
-    entity_id: binary_sensor.attic_st_leak
-    from: 'off'
-    to: 'on'
+
+    # leak sensor detects water
+    - platform: state
+      entity_id: binary_sensor.attic_st_leak
+      from: 'off'
+      to: 'on'
+
   action:
+
     - service: homeassistant.turn_on
       entity_id: 
         - light.franks_lamp
+
     - service: notify.pushover_frank
       data:
         title: "Attic Flood"
         message: "Flood sensor triggered in attic, turn off AC now!"
+
     - service: notify.mobile_app_pixel_3
       data:
         title: "Attic Flood"
