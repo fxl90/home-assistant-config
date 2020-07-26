@@ -1,0 +1,71 @@
+# Turn on the Guest Bedroom lights
+- alias: Guest Bedroom Pico on
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.remotes_pico_1
+      to: '1'
+  action:
+    service: light.turn_on
+    entity_id: light.guest_bedroom_lamp
+
+# Turn off the Guest Bedroom lights
+- alias: Guest Bedroom Pico Off
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.remotes_pico_1
+      to: '4'
+  condition:
+    condition: state
+    entity_id: light.guest_bedroom_lamp
+    state: 'on'
+  action:
+    service: light.turn_off
+    entity_id: light.guest_bedroom_lamp
+
+# Brighten the Guest Bedroom lights
+- alias: Guest Bedroom Pico Up
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.remotes_pico_1
+      to: '8'
+  action:
+    service: light.turn_on
+    entity_id: light.guest_bedroom_lamp
+    data_template:
+      brightness: >
+        {% if is_state('light.guest_bedroom_lamp', 'off') %}
+          51
+        {% else %}
+          {% set suggested = states.light.guest_bedroom_lamp.attributes.brightness + 51 %}
+          {% if suggested < 256 %}
+            {{ suggested }}
+          {% else %}
+            255
+          {% endif %}
+        {% endif %}
+
+# Dim the Guest Bedroom lights
+- alias: Guest Bedroom Pico Down
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.remotes_pico_1
+      to: '16'
+  action:
+    service: light.turn_on
+    entity_id: light.guest_bedroom_lamp
+    data_template:
+      brightness: >
+        {% if is_state('light.guest_bedroom_lamp', 'off') %}
+          0
+        {% else %}
+          {% set suggested = states.light.guest_bedroom_lamp.attributes.brightness - 51 %}
+          {% if suggested > 0 %}
+            {{ suggested }}
+          {% else %}
+            0
+          {% endif %}
+        {% endif %}

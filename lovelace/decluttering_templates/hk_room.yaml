@@ -1,0 +1,46 @@
+hk_room:
+  default:
+  card:
+    type: vertical-stack
+    cards:
+      - type: markdown
+        content: |
+          ## [[label]]
+        style: |
+          ha-card {
+            margin: 0px 14px -5px 14px;
+            background-color: transparent;
+            box-shadow: none;
+          }
+          h2 {
+            font-size: 18px;
+            font-weight: 400;
+            padding-left: 10px;
+            border-left: 3px solid rgba(81, 134, 236);
+          }
+      - type: horizontal-stack
+        cards:
+          - type: custom:decluttering-card
+            template: "hk_room_scene"
+            variables:
+              - entity_id: "[[entity_id1]]"
+              - name: "[[name1]]"
+              - icon: "[[icon1]]"
+          - type: custom:decluttering-card
+            template: "hk_room_sensor"
+            variables:
+              - entity_id: "[[entity_id2]]"
+              - name: "[[name2]]"
+      - type: horizontal-stack
+        cards:
+          - type: custom:decluttering-card
+            template: "hk_room_scene"
+            variables:
+              - entity_id: "[[entity_id3]]"
+              - name: "[[name3]]"
+              - icon: "[[icon3]]"
+          - type: custom:decluttering-card
+            template: "hk_room_sensor"
+            variables:
+              - entity_id: "[[entity_id4]]"
+              - name: "[[name4]]"

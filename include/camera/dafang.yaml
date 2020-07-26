@@ -1,0 +1,11 @@
+# - platform: ffmpeg
+#   name: Camis Bedroom
+#   input: !secret dafang_rtsp_cami
+- platform: generic
+  name: Garage
+  still_image_url: !secret dafang_garage_still_image
+  stream_source: !secret dafang_garage_rtsp
+  verify_ssl: false
+  username: !secret dafang_username
+  password: !secret dafang_password
+  authentication: basic

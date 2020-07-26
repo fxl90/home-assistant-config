@@ -1,0 +1,68 @@
+# Check presence state and home assistant start.
+- alias: Monitor On HA Start Sequence
+  initial_state: true
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "monitor/scan/restart"
+    - delay:
+        seconds: 10
+    - service: device_tracker.see
+      data_template:
+        dev_id: jordans_pixel_monitor
+        location_name: >
+          {% if states('sensor.monitor_confidence_jordan') | float > 10 %}
+            home
+          {% else %}
+            not_home
+          {% endif %}
+    - delay:
+        seconds: 10
+    - service: device_tracker.see
+      data_template:
+        dev_id: franks_pixel_monitor
+        location_name: >
+          {% if states('sensor.monitor_confidence_frank') | float > 10 %}
+            home
+          {% else %}
+            not_home
+          {% endif %}
+
+- alias: Monitor Departure Scan Doors
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.garage_door
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.patio_door
+      from: 'off'
+      to: 'on'
+  action:
+    - delay:
+        seconds: 30
+    - service: 'mqtt.publish'
+      data: 
+        topic: monitor/scan/depart
+
+- alias: Monitor Departure Scan Presence
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: device_tracker.pixel_3
+      from: 'home'
+    - platform: state
+      entity_id: device_tracker.pixel_3_xl
+      from: 'home'
+  action:
+    - service: 'mqtt.publish'
+      data: 
+        topic: monitor/scan/depart

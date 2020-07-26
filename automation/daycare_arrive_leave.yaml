@@ -1,0 +1,51 @@
+- alias: Daycare Frank Arrives
+  initial_state: 'on'
+  trigger:
+    platform: zone
+    entity_id: person.frank_lamas
+    zone: zone.daycare
+    event: enter
+  action:
+    service: notify.mobile_app_pixel_3
+    data:
+      title: "Presence Event"
+      message: "Frank has arrived at the daycare."
+
+- alias: Daycare Frank Leaves
+  initial_state: 'on'
+  trigger:
+    platform: zone
+    entity_id: person.frank_lamas
+    zone: zone.daycare
+    event: leave
+  action:
+    service: notify.mobile_app_pixel_3
+    data:
+      title: "Presence Event"
+      message: "Frank has left the daycare."
+
+- alias: Daycare Jordan Arrives
+  initial_state: 'on'
+  trigger:
+    platform: zone
+    entity_id: person.jordan_lamas
+    zone: zone.daycare
+    event: enter
+  action:
+    service: notify.pushover_frank
+    data:
+      title: "Presence Event"
+      message: "Jordan has arrived at the daycare."
+
+- alias: Daycare Jordan Leaves 
+  initial_state: 'on'
+  trigger:
+    platform: zone
+    entity_id: person.jordan_lamas
+    zone: zone.daycare
+    event: leave
+  action:
+    service: notify.pushover_frank
+    data:
+      title: "Presence Event"
+      message: "Jordan has left the daycare."

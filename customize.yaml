@@ -1,0 +1,5 @@
+binary_sensor.exterior_front_driveway_aqara_motion: {}
+binary_sensor.exterior_driveway_tasmota_motion:
+  device_class: motion
+binary_sensor.exterior_right_motion:
+  device_class: motion

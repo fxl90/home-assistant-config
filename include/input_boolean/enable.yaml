@@ -1,0 +1,14 @@
+enable_guest_mode:
+  name: Enable Guest Mode
+  initial: off
+  icon: mdi:account-multiple
+enable_vacation_mode:
+  name: Enable Vacation Mode
+  initial: off
+  icon: mdi:airplane-takeoff
+enable_test_mode:
+  initial: off
+  name: Enable Test Mode
+enable_camis_home_mode:
+  initial: on
+  name: Enable Camis Home Mode

@@ -1,0 +1,8 @@
+disable_home_away:
+  name: Disable Home Away
+  initial: off
+  icon: mdi:car
+disable_motion_automation:
+  name: Disable Motion Automation
+  icon: mdi:waves
+  initial: off

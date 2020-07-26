@@ -1,0 +1,35 @@
+- platform: androidtv
+  name: Master Bedroom Shield TV
+  host: $secret android_tv_master_bedroom
+  device_class: androidtv
+  exclude_unnamed_apps: true
+  apps:
+    com.amazon.avod: "Prime Video"
+    com.hulu.plus:  "Hulu" # this will never show up in the sources list
+    com.netflix.ninja: "Netflix"  # this will also never show up in the sources
+    com.plexapp.android: "Plex"
+    com.spotify.tv.android: "Spotify"
+    com.google.android.youtube.tv: "YouTube"
+    com.google.android.youtube.tvunplugged: "YouTube TV"
+    com.disney.disneyplus: "Disney+"
+    com.hbo.hbonow: "HBO Now"
+    com.cbs.ott: "CBS All Access"
+    com.mtvn.mtvPrimeAndroid: "MTV"
+
+- platform: androidtv
+  name: Living Room Android TV
+  host: !secret android_tv_living_room
+  device_class: androidtv
+  exclude_unnamed_apps: true
+  apps:
+    com.amazon.avod: "Prime Video"
+    com.hulu.plus:  "Hulu" # this will never show up in the sources list
+    com.netflix.ninja: "Netflix"  # this will also never show up in the sources
+    com.plexapp.android: "Plex"
+    com.spotify.tv.android: "Spotify"
+    com.google.android.youtube.tv: "YouTube"
+    com.google.android.youtube.tvunplugged: "YouTube TV"
+    com.disney.disneyplus: "Disney+"
+    com.hbo.hbonow: "HBO Now"
+    com.cbs.ott: "CBS All Access"
+    com.mtvn.mtvPrimeAndroid: "MTV"

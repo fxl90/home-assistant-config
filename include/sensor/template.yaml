@@ -1,0 +1,14 @@
+- platform: template
+  sensors:
+    outside_temperature:
+      friendly_name: "Outside Temperature"
+      value_template: "{{ state_attr('weather.dark_sky', 'temperature') }}"
+      unit_of_measurement: "°F"
+    outside_humidity:
+      friendly_name: "Outside Humidity"
+      value_template: "{{ state_attr('weather.dark_sky', 'humidity') }}"
+      unit_of_measurement: "%"
+    outside_wind_speed:
+      friendly_name: "Outside Wind Speed"
+      value_template: "{{ state_attr('weather.dark_sky', 'wind_speed') }}"
+      unit_of_measurement: "mi/h"

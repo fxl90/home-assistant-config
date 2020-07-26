@@ -1,0 +1,50 @@
+- alias: Exterior Right Motion Detected On
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.exterior_esph_motion_right
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion_automation
+      state: 'off'
+  action:
+    - data:
+        title: "Motion Detected"
+        message: "Right side of house motion sensor triggered."
+      service: notify.pushover_frank
+    - service: switch.turn_on
+      data_template:
+        entity_id: 
+          - switch.exterior_front_flood
+          - switch.exterior_back_flood
+    - delay:
+        seconds: 3
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: switch.exterior_front_flood
+        state: 'on'
+      - condition: state
+        entity_id: switch.exterior_back_flood
+        state: 'on'
+
+- alias: Exterior Right Motion Detected Off
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.exterior_esph_motion_right
+      to: 'off'
+      for:
+        minutes: 10
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion_automation
+      state: 'off'
+  action:
+    - service: switch.turn_off
+      data_template:
+        entity_id: 
+          - switch.exterior_front_flood
+          - switch.exterior_back_flood

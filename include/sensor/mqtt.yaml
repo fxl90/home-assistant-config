@@ -1,0 +1,121 @@
+- platform: mqtt
+  name: "Acurite Humidity"
+  state_topic: "rtl_433/Acurite-Tower/8842"
+  unit_of_measurement: '%'
+  device_class: humidity
+  json_attributes_topic: "rtl_433/Acurite-Tower/8842"
+  json_attributes_template: >-
+    {
+      "humidity": "{{ value_json.humidity }}"
+    }
+  value_template: >-
+    {% set calibration = -0.5 %}
+    {% set humidity = value_json.humidity %}
+    {% set stale_hours = 12 %}
+    {% set last_update = as_timestamp(value_json.time) %}
+    {% if as_timestamp(now()) - last_update <= stale_hours*60*60 %}
+      {{ humidity + calibration }}
+    {% else %}
+      unknown
+    {% endif %}
+    
+- platform: mqtt
+  name: "Acurite Temperature"
+  state_topic: "rtl_433/Acurite-Tower/8842"
+  unit_of_measurement: '°C'
+  device_class: temperature
+  json_attributes_topic: "rtl_433/Acurite-Tower/8842"
+  json_attributes_template: >-
+    {
+      "temperature_C": "{{ value_json.temperature_C }}"
+    }
+  value_template: >-
+    {% set calibration = 0.2 %}
+    {% set temperature = value_json.temperature_C %}
+    {% set stale_hours = 12 %}
+    {% set last_update = as_timestamp(value_json.time) %}
+    {% if as_timestamp(now()) - last_update <= stale_hours*60*60 %}
+      {{ (temperature + calibration) | round(1) }}
+    {% else %}
+      unknown
+    {% endif %}
+
+- platform: mqtt
+  name: "Acurite Battery"
+  state_topic: "rtl_433/Acurite-Tower/8842"
+  unit_of_measurement: '%'
+  device_class: battery
+  value_template: "{{ float(value_json.battery_ok|int) * 99 + 1 }}"
+
+
+- platform: mqtt
+  name: "Grill Temperature 1"
+  state_topic: "rtl_433/Maverick-ET73x/17044"
+  unit_of_measurement: '°C'
+  device_class: temperature
+  json_attributes_template: >-
+    {
+      "temperature_1_C": "{{ value_json.temperature_1_C }}"
+    }
+  value_template: >-
+    {{ value_json.temperature_1_C }}
+
+- platform: mqtt
+  name: "Grill Temperature 2"
+  state_topic: "rtl_433/Maverick-ET73x/17044"
+  unit_of_measurement: '°C'
+  device_class: temperature
+  json_attributes_template: >-
+    {
+      "temperature_2_C": "{{ value_json.temperature_2_C }}"
+    }
+  value_template: >-
+    {{ value_json.temperature_2_C }}
+
+- platform: mqtt
+  state_topic: !secret monitor_garage_frank
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'Monitor Garage Frank'
+
+- platform: mqtt
+  state_topic: !secret monitor_living_room_frank
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'Monitor Living Room Frank'
+
+- platform: mqtt
+  state_topic: !secret monitor_master_frank
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'Monitor Master Frank'
+
+- platform: mqtt
+  state_topic: !secret monitor_office_frank
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'Monitor Office Frank'
+
+- platform: mqtt
+  state_topic: !secret monitor_garage_jordan
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'Monitor Garage Jordan'
+
+- platform: mqtt
+  state_topic: !secret monitor_living_room_jordan
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'Monitor Living Room Jordan'
+
+- platform: mqtt
+  state_topic: !secret monitor_master_jordan
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'Monitor Master Jordan'
+
+- platform: mqtt
+  state_topic: !secret monitor_office_jordan
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'Monitor Office Jordan'

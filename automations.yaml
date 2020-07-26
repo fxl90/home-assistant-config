@@ -1,0 +1,98 @@
+- id: '1592748491102'
+  alias: HA Startup Set Theme
+  description: Set HA theme at startup.
+  trigger:
+  - event: start
+    platform: homeassistant
+  - event: sunrise
+    platform: sun
+  - event: sunset
+    platform: sun
+  condition: []
+  action:
+  - data_template:
+      name: "{% if states.sun.sun.state == \"above_horizon\" %}\n  Google Light Theme\n\
+        {% else %}\n  Google Dark Theme\n{% endif %}\n"
+    service: frontend.set_theme
+- id: '1592751012814'
+  alias: Master Bathroom Jordan Button Pushed
+  description: ''
+  trigger:
+  - device_id: 45ef83c513eb4116a910108c4502e7ef
+    domain: hubitat
+    platform: device
+    subtype: '1'
+    type: pushed
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.master_bathroom_vanity
+    service: light.toggle
+- id: '1592786243361'
+  alias: Camis Bedroom Button Pushed
+  description: ''
+  trigger:
+  - device_id: 4e764c49d96a4350affcd5fa43517cdc
+    domain: hubitat
+    platform: device
+    subtype: '1'
+    type: pushed
+  condition: []
+  action:
+  - device_id: d07e085b3e00430c8382ee8b0b4d9ee5
+    domain: switch
+    entity_id: switch.camis_bedroom_ikea_plug
+    type: toggle
+- id: '1592791117618'
+  alias: Kitchen Sink Button Pushed
+  description: ''
+  trigger:
+  - device_id: fd3dc5590c05459cbd2bd2ebe614b44a
+    domain: hubitat
+    platform: device
+    subtype: '1'
+    type: pushed
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.kitchen_main
+    service: light.toggle
+- id: '1593444630686'
+  alias: Office Fan On When Hot
+  description: ''
+  trigger:
+  - above: 76
+    device_id: eab6973c7d6c40a1a82ef9e3f13ec740
+    domain: sensor
+    entity_id: sensor.office_aqara_climate_temperature
+    platform: device
+    type: temperature
+  - device_id: bbdca1be3b5941e39e77e89ac1094a27
+    domain: binary_sensor
+    entity_id: binary_sensor.office_hue_motion
+    platform: device
+    type: motion
+  condition:
+  - condition: or
+    conditions:
+    - condition: device
+      device_id: e835312fe59f4583ac7a9f8d58f3181a
+      domain: light
+      entity_id: light.office_lamp
+      type: is_on
+    - condition: state
+      entity_id: light.office_ceiling
+      state: 'on'
+  - above: 76
+    condition: device
+    device_id: eab6973c7d6c40a1a82ef9e3f13ec740
+    domain: sensor
+    entity_id: sensor.office_aqara_climate_temperature
+    type: is_temperature
+  - condition: state
+    entity_id: switch.office_ceiling_fan
+    state: 'off'
+  action:
+  - data: {}
+    entity_id: switch.office_ceiling_fan
+    service: switch.turn_on

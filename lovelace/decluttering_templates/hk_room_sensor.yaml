@@ -1,0 +1,14 @@
+hk_room_sensor:
+  default:
+  card:
+    type: sensor
+    name: "[[name]]"
+    entity: '[[entity_id]]'
+    graph: none
+    hold_action:
+      action: more-info
+    style: |
+      ha-card {
+        margin: -5px 14px 10px 3px;
+      }
+

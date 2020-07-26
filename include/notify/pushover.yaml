@@ -1,0 +1,9 @@
+- name: pushover_frank
+  platform: pushover
+  api_key: !secret pushover_api_key_frank
+  user_key: !secret pushover_user_key_frank
+
+- name: pushover_jordan
+  platform: pushover
+  api_key: !secret pushover_api_key_jordan
+  user_key: !secret pushover_user_key_jordan

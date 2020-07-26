@@ -1,0 +1,5 @@
+- platform: flume
+  username: !secret flume_username
+  password: !secret flume_password
+  client_id: !secret flume_client_id
+  client_secret: !secret flume_client_secret

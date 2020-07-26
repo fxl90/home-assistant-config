@@ -1,0 +1,157 @@
+- id: '1581386056516'
+  name: Master Bedroom Night
+  entities:
+    light.master_bedroom_franks_lamp:
+      brightness: 144
+      effect: none
+      effect_list:
+      - colorloop
+      - random
+      friendly_name: master_bedroom_franks_lamp
+      hs_color:
+      - 36.568
+      - 66.275
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 255
+      - 188
+      - 85
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.502
+      - 0.414
+    light.master_bedroom_jordans_lamp:
+      brightness: 144
+      effect: none
+      effect_list:
+      - colorloop
+      - random
+      friendly_name: master_bedroom_jordans_lamp
+      hs_color:
+      - 36.568
+      - 66.275
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 255
+      - 188
+      - 85
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.502
+      - 0.414
+    light.master_bedroom_ceiling:
+      area_name: Master Bedroom
+      friendly_name: Master Bedroom Ceiling
+      integration_id: 14
+      state: 'off'
+      supported_features: 33
+    light.master_bedroom_main:
+      area_name: Master Bedroom
+      friendly_name: Master Bedroom Main
+      integration_id: 15
+      state: 'off'
+      supported_features: 33
+    switch.master_bedroom_ceiling_fan:
+      area_name: Master Bedroom
+      friendly_name: Master Bedroom Ceiling Fan
+      integration_id: 13
+      state: 'on'
+- id: '1581386249200'
+  name: Master Bedroom Day
+  entities:
+    light.master_bedroom_franks_lamp:
+      effect_list:
+      - colorloop
+      - random
+      friendly_name: master_bedroom_franks_lamp
+      max_mireds: 500
+      min_mireds: 153
+      state: 'off'
+      supported_features: 63
+    light.master_bedroom_jordans_lamp:
+      effect_list:
+      - colorloop
+      - random
+      friendly_name: master_bedroom_jordans_lamp
+      max_mireds: 500
+      min_mireds: 153
+      state: 'off'
+      supported_features: 63
+    light.master_bedroom_ceiling:
+      area_name: Master Bedroom
+      friendly_name: Master Bedroom Ceiling
+      integration_id: 14
+      state: 'off'
+      supported_features: 33
+    light.master_bedroom_main:
+      area_name: Master Bedroom
+      brightness: 255
+      friendly_name: Master Bedroom Main
+      integration_id: 15
+      state: 'on'
+      supported_features: 33
+    switch.master_bedroom_ceiling_fan:
+      area_name: Master Bedroom
+      friendly_name: Master Bedroom Ceiling Fan
+      integration_id: 13
+      state: 'off'
+- id: '1586046599295'
+  name: Camis Bedroom Bedtime
+  entities:
+    light.camis_bedroom_ceiling:
+      area_name: Camis Bedroom
+      friendly_name: Camis Bedroom Ceiling
+      integration_id: 26
+      state: 'off'
+      supported_features: 33
+    light.camis_bedroom_lamp:
+      brightness: 1
+      color_temp: 500
+      effect: none
+      effect_list:
+      - colorloop
+      - random
+      friendly_name: Camis Bedroom Lamp
+      max_mireds: 500
+      min_mireds: 153
+      state: 'on'
+      supported_features: 63
+    switch.camis_bedroom_ceiling_fan:
+      area_name: Camis Bedroom
+      friendly_name: Camis Bedroom Ceiling Fan
+      integration_id: 27
+      state: 'off'
+    switch.camis_bedroom_ikea_plug:
+      friendly_name: Camis Bedroom White Noise
+      state: 'on'
+- id: '1586046649956'
+  name: Camis Bedroom Morning
+  entities:
+    light.camis_bedroom_ceiling:
+      area_name: Camis Bedroom
+      brightness: 255
+      friendly_name: Camis Bedroom Ceiling
+      integration_id: 26
+      state: 'on'
+      supported_features: 33
+    light.camis_bedroom_lamp:
+      effect_list:
+      - colorloop
+      - random
+      friendly_name: Camis Bedroom Lamp
+      max_mireds: 500
+      min_mireds: 153
+      state: 'off'
+      supported_features: 63
+    switch.camis_bedroom_ceiling_fan:
+      area_name: Camis Bedroom
+      friendly_name: Camis Bedroom Ceiling Fan
+      integration_id: 27
+      state: 'off'
+    switch.camis_bedroom_ikea_plug:
+      friendly_name: Camis Bedroom White Noise
+      state: 'off'

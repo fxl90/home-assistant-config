@@ -1,0 +1,60 @@
+- alias: Camis Bedroom Lights On
+  id: 4f93eb01-3f0e-4e73-956c-0a84012b7195
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.camis_bedroom_wyze_motion
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion_automation
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.enable_camis_home_mode
+      state: 'off'
+    - condition: or
+      conditions:
+        - condition: time
+          after: '08:00:00'
+          before: '12:00:00'
+          weekday:
+            - sat
+            - sun
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+        - condition: time
+          after: '15:30:00'
+          before: '18:30:00'
+          weekday:
+            - sat
+            - sun
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+  action:
+  - service: light.turn_on
+    data_template:
+      entity_id: light.camis_bedroom_ceiling
+
+- alias: Camis Bedroom Lights Off
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.camis_bedroom_wyze_motion
+      to: 'off'
+      for:
+        minutes: 15
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion_automation
+      state: 'off'
+  action:
+  - service: light.turn_off
+    data:
+      entity_id: light.camis_bedroom_ceiling

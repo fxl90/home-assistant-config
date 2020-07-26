@@ -1,0 +1,61 @@
+# Motion turn on master bedroom lights
+- alias: Master Bedroom Motion Lights On
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.master_bedroom_wyze_motion
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion_automation
+      state: 'off'
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.master_bedroom_bed_esph_pressure_frank
+          state: 'off'
+        - condition: state
+          entity_id: binary_sensor.master_bedroom_bed_esph_pressure_jordan
+          state: 'off'
+  action:
+    - service: light.turn_on
+      data_template: 
+        entity_id: >
+            {% if is_state("sun.sun", "below_horizon") %}
+              light.master_bedroom_franks_lamp
+            {% else %}
+              light.master_bedroom_ceiling
+            {% endif %}
+
+# Motion turn off lights
+- alias: Master Bedroom Motion Lights Off
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.master_bedroom_wyze_motion
+      to: 'off'
+      for:
+        minutes: 15
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion_automation
+      state: 'off'
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.master_bedroom_bed_esph_pressure_frank
+          state: 'off'
+        - condition: state
+          entity_id: binary_sensor.master_bedroom_bed_esph_pressure_jordan
+          state: 'off'
+  action:
+  - service: homeassistant.turn_off
+    data:
+      entity_id:
+        - light.master_bedroom_franks_lamp
+        - light.master_bedroom_jordans_lamp
+        - light.master_bedroom_main
+        - light.master_bedroom_ceiling
+        - switch.master_bedroom_ceiling_fan
+        - switch.master_bedroom_ikea_plug

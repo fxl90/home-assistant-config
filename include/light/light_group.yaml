@@ -1,0 +1,20 @@
+- platform: group
+  name: Living Room Lamp Group
+  entities:
+    - light.living_room_lamp_1
+    - light.living_room_lamp_2
+
+- platform: group
+  name: Master Bedroom Lamp Group
+  entities:
+    - light.master_bedroom_franks_lamp
+    - light.master_bedroom_jordans_lamp
+
+- platform: group
+  name: Exterior Driveway Bollard Group
+  entities:
+    - light.exterior_driveway_bollard_1
+    - light.exterior_driveway_bollard_2
+    - light.exterior_driveway_bollard_3
+    - light.exterior_driveway_bollard_4
+    - light.exterior_driveway_bollard_5

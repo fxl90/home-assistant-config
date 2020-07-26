@@ -1,0 +1,25 @@
+# Turn off the Office lights
+- alias: Office Pico Off
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.remotes_pico_3
+      to: '4'
+  condition:
+    condition: state
+    entity_id: light.office_lamp
+    state: 'on'
+  action:
+    service: light.turn_off
+    entity_id: light.office_lamp
+
+# Turn on the Office lights
+- alias: Office Pico on
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: sensor.remotes_pico_3
+      to: '1'
+  action:
+    service: light.turn_on
+    entity_id: light.office_lamp

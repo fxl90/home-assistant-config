@@ -1,0 +1,32 @@
+- alias: Garage Motion Lights On
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.garage_wyze_motion, binary_sensor.garage_eco_motion_motion
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion_automation
+      state: 'off'
+  action:
+  - service: switch.turn_on
+    data_template:
+      entity_id: switch.garage_main
+
+- alias: Garage Motion Lights Off
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.garage_wyze_motion, binary_sensor.garage_eco_motion_motion
+      to: 'off'
+      for:
+        minutes: 15
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion_automation
+      state: 'off'
+  action:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.garage_main

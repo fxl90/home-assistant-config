@@ -1,0 +1,15 @@
+- alias: Exterior Silverado Sage Problem
+  initial_state: true
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.xiaomi_miflora_moisture
+      below: 20
+  action:
+    - service: notify.mobile_app_pixel_3
+      data_template:
+        title: "Plant"
+        message: 'Silverado Sage Problem: {{ state_attr("plant.exterior_silverado_sage", "problem") }}'
+    - service: notify.pushover_frank
+      data_template:
+        title: "Plant"
+        message: 'Silverado Sage Problem: {{ state_attr("plant.exterior_silverado_sage", "problem") }}'

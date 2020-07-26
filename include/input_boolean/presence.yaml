@@ -1,0 +1,9 @@
+frank_presence:
+  name: Frank Presence
+  icon: mdi:account
+jordan_presence:
+  name: Jordan Presence
+  icon: mdi:account
+arrival_scan:
+  name: Arrival Scan
+  initial: off

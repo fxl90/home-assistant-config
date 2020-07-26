@@ -1,0 +1,19 @@
+- alias: Kitchen Flood On
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: binary_sensor.kitchen_sink_st_leak_water
+    from: 'off'
+    to: 'on'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: 
+        - light.franks_lamp
+    - service: notify.pushover_frank
+      data:
+        title: "Kitchen Flood"
+        message: "Flood sensor triggered in kitchen!"
+    - service: notify.mobile_app_pixel_3
+      data:
+        title: "Kitchen Flood"
+        message: "Flood sensor triggered in kitchen, let Frank know just in case!"

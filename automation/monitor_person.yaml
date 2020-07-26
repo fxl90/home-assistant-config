@@ -1,0 +1,53 @@
+# Create Device Tracker
+- alias: Monitor Frank Home
+  initial_state: true
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.monitor_confidence_frank
+      above: 10
+  action:
+    - service: device_tracker.see
+      data:
+        dev_id: franks_pixel_monitor
+        location_name: 'home'
+        source_type: bluetooth
+
+- alias: Monitor Frank Away
+  initial_state: true
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.monitor_confidence_frank
+      below: 10
+  action:
+    - service: device_tracker.see
+      data:
+        dev_id: franks_pixel_monitor
+        location_name: 'not_home'
+        source_type: bluetooth
+
+        # Create Device Tracker
+- alias: Monitor Jordan Home
+  initial_state: true
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.monitor_confidence_jordan
+      above: 10
+  action:
+    - service: device_tracker.see
+      data:
+        dev_id: jordans_pixel_monitor
+        location_name: 'home'
+        source_type: bluetooth
+
+- alias: Monitor Jordan Away
+  initial_state: true
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.monitor_confidence_jordan
+      below: 10
+  action:
+    - service: device_tracker.see
+      data:
+        dev_id: jordans_pixel_monitor
+        location_name: 'not_home'
+        source_type: bluetooth

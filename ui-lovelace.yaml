@@ -1,0 +1,14 @@
+###########################################################
+# Header
+###########################################################
+custom_header: !include lovelace/includes/custom_header.yaml
+
+###########################################################
+# Decluttering
+###########################################################
+decluttering_templates: !include_dir_merge_named lovelace/decluttering_templates/
+
+###########################################################
+# Views
+###########################################################
+views: !include_dir_list lovelace/views/

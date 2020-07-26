@@ -1,0 +1,16 @@
+hk_sensor:
+  default:
+    - aspect_ratio: "1/1"
+  card:
+    type: sensor
+    name: "[[name]]"
+    entity: '[[entity_id]]'
+    graph: none
+    aspect_ratio: "[[aspect_ratio]]"
+    hold_action:
+      action: more-info
+    style: |
+      ha-card {
+        margin: -5px 14px 15px 14px;
+      }
+

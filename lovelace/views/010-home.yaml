@@ -1,0 +1,477 @@
+title: Home
+path: default_view
+icon: mdi:home
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: markdown
+        style: |
+          ha-card {
+            margin: 5px 14px -5px 10px;
+            background-color: transparent;
+            box-shadow: none;
+          }
+          h2 {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--app-header-text-color);
+          }
+        content: |
+            {% if now().hour < 5 %}
+            ## Good night
+            {% elif now().hour < 12 %}
+            ## Good morning
+            {% elif now().hour < 18 %}
+            ## Good afternoon
+            {% else %}
+            ## Have a nice evening
+            {% endif %}
+
+  # Today Status
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: |
+         {% if now().month in (1,) %}
+          ## January {{ now().day }}
+          {% elif now().month in (2,) %}
+          ## February {{ now().day }}
+          {% elif now().month in (3,) %}
+          ## March {{ now().day }}
+          {% elif now().month in (4,) %}
+          ## April {{ now().day }}
+          {% elif now().month in (5,) %}
+          ## May {{ now().day }}
+          {% elif now().month in (6,) %}
+          ## June {{ now().day }} 
+          {% elif now().month in (7,) %}
+          ## July {{ now().day }}
+          {% elif now().month in (8,) %}
+          ## August {{ now().day }}
+          {% elif now().month in (9,) %}
+          ## September {{ now().day }}
+          {% elif now().month in (10,) %}
+          ## October {{ now().day }}
+          {% elif now().month in (11,) %}
+          ## November {{ now().day }}
+          {% elif now().month in (12,) %}
+          ## December {{ now().day }}
+          {% endif %}
+        style: |
+         ha-card {
+            margin: 12px 14px -5px 14px;
+            background-color: transparent;
+            box-shadow: none;
+          }
+          h2 {
+            font-size: 18px;
+            font-weight: 400;
+            padding-left: 10px;
+            border-left: 3px solid rgba(81, 134, 236);
+          }
+      - type: 'custom:simple-weather-card'
+        style: |
+          ha-card {
+            margin: -5px 14px 15px 14px;
+          }
+        entity: weather.dark_sky
+        name: ' '
+        backdrop: true
+        primary_info:
+          - wind_bearing
+          - humidity
+        secondary_info:
+          - precipitation
+          - precipitation_probability
+
+  # Access Section
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: |
+         ## Access
+        style: |
+         ha-card {
+            margin: 0px 14px -5px 14px;
+            background-color: transparent;
+            box-shadow: none;
+          }
+          h2 {
+            font-size: 18px;
+            font-weight: 400;
+            padding-left: 10px;
+            border-left: 3px solid rgba(81, 134, 236);
+          }
+      - type: entities
+        style: |
+          ha-card {
+            margin: -5px 14px 15px 14px;
+          }
+        entities:
+          - entity: lock.front_door
+            name: Front Door
+          - entity: lock.garage_door_kw_lock
+            name: Garage Door
+          - entity: cover.garage_franks_door
+            name: Frank's Garage Door       
+          - entity: cover.garage_jordans_door
+            name: Jordan's Garage Door
+          - entity: alarm_control_panel.26026_dull_knife_trl_alarm_control_panel
+            name: Alarm
+
+  # At Glance Section
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: |
+         ## At A Glance
+        style: |
+         ha-card {
+            margin: 0px 14px -5px 14px;
+            background-color: transparent;
+            box-shadow: none;
+          }
+          h2 {
+            font-size: 18px;
+            font-weight: 400;
+            padding-left: 10px;
+            border-left: 3px solid rgba(81, 134, 236);
+          }
+      - type: glance
+        style: |
+            ha-card {
+              margin: -5px 14px 15px 14px;
+            }
+        entities:
+          - entity: person.frank_lamas
+            icon: 'mdi:human'
+          - entity: person.jordan_lamas
+            icon: 'mdi:human-female'
+          - entity: binary_sensor.master_bedroom_bed_esph_pressure_frank
+            hold_action:
+              action: more-info
+            icon: 'mdi:hotel'
+          - entity: binary_sensor.master_bedroom_bed_esph_pressure_jordan
+            hold_action:
+              action: more-info
+            icon: 'mdi:hotel'
+          - entity: sensor.acurite_temperature
+            hold_action:
+              action: more-info
+            icon: 'mdi:thermometer'
+        show_name: false
+
+  # Control Section
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: |
+         ## Controls
+        style: |
+         ha-card {
+            margin: 0px 14px -5px 14px;
+            background-color: transparent;
+            box-shadow: none;
+          }
+          h2 {
+            font-size: 18px;
+            font-weight: 400;
+            padding-left: 10px;
+            border-left: 3px solid rgba(81, 134, 236);
+          }
+      - type: custom:simple-thermostat
+        style: |
+          ha-card {
+            margin: -5px 14px 15px 14px;
+            --st-font-size-xl: 15px;
+            --st-font-size-m: 15px;
+            --st-font-size-l: 15px;
+            --st-font-size-s: 15px;
+          }
+        entity: climate.home_ecobee
+        name: false
+        control:
+          preset: true
+        label:
+          temperature: Temp
+        sensors:
+          - entity: sensor.camis_bedroom_aqara_climate_humidity
+            name: Humidity
+      - type: entities
+        style: |
+            ha-card {
+              margin: -5px 14px 15px 14px;
+            }
+        show_header_toggle: false
+        entities:
+          - entity: vacuum.robomaria
+            name: RoboMaria
+          - entity: input_boolean.enable_guest_mode
+            name: Guest Mode
+          - entity: input_boolean.enable_vacation_mode
+            name: Vacation Mode
+          - entity: input_boolean.disable_home_away
+            name: Disable Home Away
+          - entity: input_boolean.disable_motion_automation
+            name: Disable Motion Automation
+
+  # Whats On Card
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: |
+         ## What's On
+        style: |
+         ha-card {
+            margin: 0px 14px -5px 14px;
+            background-color: transparent;
+            box-shadow: none;
+          }
+          h2 {
+            font-size: 18px;
+            font-weight: 400;
+            padding-left: 10px;
+            border-left: 3px solid rgba(81, 134, 236);
+          }
+      - type: custom:auto-entities
+        card:
+          type: entities
+          show_header_toggle: false
+          style: |
+           ha-card {
+              --paper-card-background-color: var(--sidebar-background-color);
+              box-shadow: var(--card-box-shadow);
+              margin: 0px 14px 5px 14px;
+            }
+        filter:
+          include:
+            - entity_id: "light.*"
+            - entity_id: "switch.*"
+          exclude:
+          - state: "off"
+          - state: "unavailable"
+          - entity_id: "*bollard*"
+          - entity_id: "*group*"
+          - entity_id: "switch.laundry_washer*"
+        show_empty: false
+        unique: true
+        sort:
+          method: name
+  # # Camera
+  # - type: vertical-stack
+  #   cards:
+  #     - type: markdown
+  #       content: |
+  #        ## Cameras
+  #       style: |
+  #        ha-card {
+  #           margin: 0px 14px -5px 14px;
+  #           background-color: transparent;
+  #           box-shadow: none;
+  #         }
+  #         h2 {
+  #           font-size: 18px;
+  #           font-weight: 400;
+  #           padding-left: 10px;
+  #           border-left: 3px solid rgba(81, 134, 236);
+  #         }
+  # - type: picture-glance
+  #   style: |
+  #     ha-card {
+  #       margin: -5px 14px 15px 14px;
+  #     }
+  #   title: Garage
+  #   entities:
+  #     - switch.garage_main
+  #   camera_image: camera.garage
+  # - type: picture-glance
+  #   style: |
+  #     ha-card {
+  #       margin: -5px 14px 15px 14px;
+  #     }
+  #   title: Entryway
+  #   entities:
+  #     - light.exterior_front_entry
+  #   camera_image: camera.entryway
+  # - type: picture-glance
+  #   style: |
+  #     ha-card {
+  #       margin: -5px 14px 15px 14px;
+  #     }
+  #   title: Front Yard
+  #   entities: []
+  #   camera_image: camera.exterior_front_garage
+  #   # camera_view: live
+  # - type: picture-glance
+  #   style: |
+  #     ha-card {
+  #       margin: -5px 14px 15px 14px;
+  #     }
+  #   title: Back Patio
+  #   entities: []
+  #   camera_image: camera.exterior_back_patio
+  #   # camera_view: live
+  # - type: picture-glance
+  #   style: |
+  #     ha-card {
+  #       margin: -5px 14px 15px 14px;
+  #     }
+  #   title: Living Room
+  #   entities: []
+  #   camera_image: camera.living_room
+  #   # camera_view: live
+  # - type: picture-glance
+  #   style: |
+  #     ha-card {
+  #       margin: -5px 14px 15px 14px;
+  #     }
+  #   title: Playroom
+  #   entities:
+  #     - light.playroom_main
+  #   camera_image: camera.playroom
+    # camera_view: live
+  # # Living Room Card
+  # - type: vertical-stack
+  #   cards:
+  #     - type: markdown
+  #       content: |
+  #        ## **Living Room** {{ states('sensor.living_room_ecobee_temperature') }} {{ state_attr('sensor.living_room_ecobee_temperature', 'unit_of_measurement') }}
+  #       style: |
+  #        ha-card {
+  #           margin: 0px 14px -5px 14px;
+  #           background-color: transparent;
+  #           box-shadow: none;
+  #         }
+  #         h2 {
+  #           font-size: 18px;
+  #           font-weight: 400;
+  #           padding-left: 10px;
+  #           border-left: 3px solid rgba(81, 134, 236);
+  #         }
+  #     - type: custom:auto-entities
+  #       show_empty: false
+  #       card:
+  #         type: entities
+  #         style: |
+  #          ha-card {
+  #             --paper-card-background-color: var(--sidebar-background-color);
+  #             box-shadow: var(--card-box-shadow);
+  #             margin: 0px 14px 5px 14px;
+  #           }
+  #         show_header_toggle: false
+  #       filter:
+  #         include:
+  #           - entity_id: "*light.living*"
+  #           - entity_id: "*light.playroom*"
+  #         exclude:
+  #           - entity_id: "*group*"
+
+  # # Kitchen Card
+  # - type: vertical-stack
+  #   cards:
+  #     - type: markdown
+  #       content: |
+  #        ## **Kitchen** {{ states('sensor.kitchen_aqara_climate_temperature') }} {{ state_attr('sensor.kitchen_aqara_climate_temperature', 'unit_of_measurement') }}
+  #       style: |
+  #        ha-card {
+  #           margin: 0px 14px -5px 14px;
+  #           background-color: transparent;
+  #           box-shadow: none;
+  #         }
+  #         h2 {
+  #           font-size: 18px;
+  #           font-weight: 400;
+  #           padding-left: 10px;
+  #           border-left: 3px solid rgba(81, 134, 236);
+  #         }
+  #     - type: custom:auto-entities
+  #       show_empty: false
+  #       card:
+  #         type: entities
+  #         style: |
+  #          ha-card {
+  #             --paper-card-background-color: var(--sidebar-background-color);
+  #             box-shadow: var(--card-box-shadow);
+  #             margin: 0px 14px 5px 14px;
+  #           }
+  #         show_header_toggle: false
+  #       filter:
+  #         include:
+  #           - entity_id: "*light.kitchen*"
+  #         exclude:
+  #           - entity_id: "*group*"
+
+  # # Master Bedroom Card
+  # - type: vertical-stack
+  #   cards:
+  #     - type: markdown
+  #       content: |
+  #        ## **Master Bedroom** {{ states('sensor.bedroom_master_sonoff_climate_temperature') }} {{ state_attr('sensor.bedroom_master_sonoff_climate_temperature', 'unit_of_measurement') }}
+  #       style: |
+  #        ha-card {
+  #           margin: 0px 14px -5px 14px;
+  #           background-color: transparent;
+  #           box-shadow: none;
+  #         }
+  #         h2 {
+  #           font-size: 18px;
+  #           font-weight: 400;
+  #           padding-left: 10px;
+  #           border-left: 3px solid rgba(81, 134, 236);
+  #         }
+  #     - type: custom:auto-entities
+  #       show_empty: false
+  #       card:
+  #         type: entities
+  #         style: |
+  #          ha-card {
+  #             --paper-card-background-color: var(--sidebar-background-color);
+  #             box-shadow: var(--card-box-shadow);
+  #             margin: 0px 14px 5px 14px;
+  #           }
+  #         show_header_toggle: false
+  #       filter:
+  #         include:
+  #           - entity_id: "*light.bedroom_master*"
+  #           - entity_id: "*scene.master*"
+  #         exclude:
+  #           - entity_id: "*group*"
+  #           - entity_id: "*blue*"
+  #           - entity_id: "*red*"
+
+  # # Exterior Card
+  # - type: vertical-stack
+  #   cards:
+  #     - type: markdown
+  #       content: |
+  #        ## Exterior
+  #       style: |
+  #        ha-card {
+  #           margin: 0px 14px -5px 14px;
+  #           background-color: transparent;
+  #           box-shadow: none;
+  #         }
+  #         h2 {
+  #           font-size: 18px;
+  #           font-weight: 400;
+  #           padding-left: 10px;
+  #           border-left: 3px solid rgba(81, 134, 236);
+  #         }
+  #     - type: custom:auto-entities
+  #       show_empty: false
+  #       card:
+  #         type: entities
+  #         style: |
+  #          ha-card {
+  #             --paper-card-background-color: var(--sidebar-background-color);
+  #             box-shadow: var(--card-box-shadow);
+  #             margin: 0px 14px 5px 14px;
+  #           }
+  #         show_header_toggle: false
+  #       filter:
+  #         include:
+  #           - entity_id: "*light.exterior*"
+  #           - entity_id: "*switch.exterior*"
+  #         exclude:
+  #           - entity_id: "*group*"
+  #           - entity_id: "*bollard*"

@@ -1,0 +1,282 @@
+title: Control
+path: control
+icon: mdi:ceiling-light
+cards:
+
+  # Control Section
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: |
+         ## **Scenes**
+        style: |
+         ha-card {
+            margin: 0px 14px -5px 14px;
+            background-color: transparent;
+            box-shadow: none;
+          }
+          h2 {
+            font-size: 18px;
+            font-weight: 400;
+            padding-left: 10px;
+            border-left: 3px solid rgba(81, 134, 236);
+          }
+      - type: glance
+        style: |
+          ha-card {
+            margin: -5px 14px 15px 14px;
+          }
+        show_state: false    
+        show_name: false 
+        entities:           
+        - entity: scene.master_bedroom_day
+          icon: 'mdi:white-balance-sunny'
+          tap_action:
+            action: call-service
+            service: scene.turn_on
+            service_data: 
+              entity_id: scene.master_bedroom_day
+        - entity: scene.master_bedroom_night
+          icon: 'mdi:bed-double-outline'
+          tap_action:
+            action: call-service
+            service: scene.turn_on
+            service_data: 
+              entity_id: scene.master_bedroom_night
+        - entity: scene.camis_bedroom_morning
+          icon: 'mdi:baby-face-outline'
+          tap_action:
+            action: call-service
+            service: scene.turn_on
+            service_data: 
+              entity_id: scene.camis_bedroom_morning
+        - entity: scene.camis_bedroom_bedtime
+          icon: 'mdi:baby-carriage'
+          tap_action:
+            action: call-service
+            service: scene.turn_on
+            service_data: 
+              entity_id: scene.camis_bedroom_bedtime
+
+  # Living Room Card
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: |
+         ## **Living Room** {{ states('sensor.living_room_ecobee_temperature') }} {{ state_attr('sensor.living_room_ecobee_temperature', 'unit_of_measurement') }} 
+        style: |
+         ha-card {
+            margin: 0px 14px -5px 14px;
+            background-color: transparent;
+            box-shadow: none;
+          }
+          h2 {
+            font-size: 18px;
+            font-weight: 400;
+            padding-left: 10px;
+            border-left: 3px solid rgba(81, 134, 236);
+          }
+      - type: custom:auto-entities
+        show_empty: false
+        card:
+          type: entities
+          style: |
+           ha-card {
+              --paper-card-background-color: var(--sidebar-background-color);
+              box-shadow: var(--card-box-shadow);
+              margin: 0px 14px 5px 14px;
+            }
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: "*light.living*"
+            - entity_id: "*light.playroom*"
+          exclude:
+            - entity_id: "*group*"
+
+  # Kitchen Card
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: |
+         ## **Kitchen** {{ states('sensor.kitchen_aqara_climate_temperature') }} {{ state_attr('sensor.kitchen_aqara_climate_temperature', 'unit_of_measurement') }} {{ states('sensor.kitchen_aqara_climate_humidity') }} {{ state_attr('sensor.kitchen_aqara_climate_humidity', 'unit_of_measurement') }}
+        style: |
+         ha-card {
+            margin: 0px 14px -5px 14px;
+            background-color: transparent;
+            box-shadow: none;
+          }
+          h2 {
+            font-size: 18px;
+            font-weight: 400;
+            padding-left: 10px;
+            border-left: 3px solid rgba(81, 134, 236);
+          }
+      - type: custom:auto-entities
+        show_empty: false
+        card:
+          type: entities
+          style: |
+           ha-card {
+              --paper-card-background-color: var(--sidebar-background-color);
+              box-shadow: var(--card-box-shadow);
+              margin: 0px 14px 5px 14px;
+            }
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: "*light.kitchen*"
+          exclude:
+            - entity_id: "*group*"
+
+  # Master Bedroom Card
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: |
+         ## **Master Bedroom** {{ states('sensor.master_bedroom_sonoff_climate_temperature') }} {{ state_attr('sensor.master_bedroom_sonoff_climate_temperature', 'unit_of_measurement') }}
+        style: |
+         ha-card {
+            margin: 0px 14px -5px 14px;
+            background-color: transparent;
+            box-shadow: none;
+          }
+          h2 {
+            font-size: 18px;
+            font-weight: 400;
+            padding-left: 10px;
+            border-left: 3px solid rgba(81, 134, 236);
+          }
+      - type: custom:auto-entities
+        show_empty: false
+        card:
+          type: entities
+          style: |
+           ha-card {
+              --paper-card-background-color: var(--sidebar-background-color);
+              box-shadow: var(--card-box-shadow);
+              margin: 0px 14px 5px 14px;
+            }
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: "*light.master_bedroom*"
+            - entity_id: "switch.master_bedroom_ceiling_fan"
+            - entity_id: "*scene.master*"
+          exclude:
+            - entity_id: "*group*"
+            - entity_id: "*blue*"
+            - entity_id: "*red*"
+
+  # Cami Card
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: |
+         ## **Cami** {{ states('sensor.camis_bedroom_ecobee_temperature') }} {{ state_attr('sensor.camis_bedroom_ecobee_temperature', 'unit_of_measurement') }}
+        style: |
+         ha-card {
+            margin: 0px 14px -5px 14px;
+            background-color: transparent;
+            box-shadow: none;
+          }
+          h2 {
+            font-size: 18px;
+            font-weight: 400;
+            padding-left: 10px;
+            border-left: 3px solid rgba(81, 134, 236);
+          }
+      - type: custom:auto-entities
+        show_empty: false
+        card:
+          type: entities
+          style: |
+           ha-card {
+              --paper-card-background-color: var(--sidebar-background-color);
+              box-shadow: var(--card-box-shadow);
+              margin: 0px 14px 5px 14px;
+            }
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: "*light.camis_bedroom*"
+            - entity_id: "*switch.camis_bedroom*"
+          exclude:
+            - entity_id: "*group*"
+            - entity_id: "*bme280*"
+
+  # Office Card
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: |
+         ## **Office** {{ states('sensor.office_aqara_climate_temperature') }} {{ state_attr('sensor.office_aqara_climate_temperature', 'unit_of_measurement') }}
+        style: |
+         ha-card {
+            margin: 0px 14px -5px 14px;
+            background-color: transparent;
+            box-shadow: none;
+          }
+          h2 {
+            font-size: 18px;
+            font-weight: 400;
+            padding-left: 10px;
+            border-left: 3px solid rgba(81, 134, 236);
+          }
+      - type: custom:auto-entities
+        show_empty: false
+        sort:
+          method: name
+        card:
+          type: entities
+          style: |
+           ha-card {
+              --paper-card-background-color: var(--sidebar-background-color);
+              box-shadow: var(--card-box-shadow);
+              margin: 0px 14px 5px 14px;
+            }
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: "*light.office*"
+            - entity_id: "*switch.office*"
+          exclude:
+            - entity_id: "*group*"
+            - entity_id: "*bme280*"
+
+  # Exterior Card
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: |
+         ## Exterior {{ states('sensor.acurite_temperature') }} {{ state_attr('sensor.acurite_temperature', 'unit_of_measurement') }}
+        style: |
+         ha-card {
+            margin: 0px 14px -5px 14px;
+            background-color: transparent;
+            box-shadow: none;
+          }
+          h2 {
+            font-size: 18px;
+            font-weight: 400;
+            padding-left: 10px;
+            border-left: 3px solid rgba(81, 134, 236);
+          }
+      - type: custom:auto-entities
+        show_empty: false
+        card:
+          type: entities
+          style: |
+           ha-card {
+              --paper-card-background-color: var(--sidebar-background-color);
+              box-shadow: var(--card-box-shadow);
+              margin: 0px 14px 5px 14px;
+            }
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: "*light.exterior*"
+            - entity_id: "*switch.exterior*"
+          exclude:
+            - entity_id: "*group*"
+            - entity_id: "*bollard*"

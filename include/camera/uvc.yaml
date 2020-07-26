@@ -1,0 +1,4 @@
+- platform: uvc
+  nvr: !secret unifi_nvr_ip
+  key: !secret unifi_camera_api_key
+  password: !secret unifi_camera_password

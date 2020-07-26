@@ -1,0 +1,19 @@
+- platform: min_max
+  name: "Monitor Confidence Frank"
+  type: max
+  round_digits: 0
+  entity_ids:
+    - sensor.monitor_garage_frank
+    - sensor.monitor_living_room_frank
+    - sensor.monitor_master_frank
+    - sensor.monitor_office_frank
+
+- platform: min_max
+  name: "Monitor Confidence Jordan"
+  type: max
+  round_digits: 0
+  entity_ids:
+    - sensor.monitor_garage_jordan
+    - sensor.monitor_living_room_jordan
+    - sensor.monitor_master_jordan
+    - sensor.monitor_office_jordan
