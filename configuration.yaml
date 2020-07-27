@@ -21,10 +21,6 @@ lovelace:
 recorder:
   db_url: !secret mariadb
   purge_keep_days: 2
-  exclude:
-    entities:
-      - light.bedroom_master_awp04l_plug_01_blue_led
-      - light.bedroom_master_awp04l_plug_01_red_led
 influxdb:
   host: a0d7b954-influxdb
   port: 8086
@@ -53,22 +49,7 @@ lutron_caseta_pro:
     - host: !secret lutron_ip
       mac: !secret lutron_mac
       switch: [ 13, 16, 17, 22, 24, 27, 34, 36, 38, 41, 42 , 43, 44, 46]
-plant:
-  exterior_silverado_sage:
-    sensors:
-      moisture: sensor.xiaomi_miflora_moisture
-      temperature: sensor.xiaomi_miflora_temperature
-      conductivity: sensor.xiaomi_miflora_soil_conductivity
-      brightness: sensor.xiaomi_miflora_illuminance
-    min_moisture: 20
-shopping_list:
 stream:
-tts:
-  - platform: google_translate
-weather:
-  - platform: darksky
-    api_key: !secret darksky_api_key
-    mode: hourly
 
 ########################################
 ###              INCLUDE             ###
@@ -78,6 +59,9 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 zone: !include zones.yaml
+alert: !include_dir_merge_named include/alert/
+plant: !include_dir_merge_named include/plant/
+input_boolean: !include_dir_merge_named include/input_boolean/
 automation split: !include_dir_merge_list automation/
 binary_sensor: !include_dir_merge_list include/binary_sensor/
 sensor: !include_dir_merge_list include/sensor/
@@ -86,8 +70,9 @@ vacuum: !include_dir_merge_list include/vacuum/
 light: !include_dir_merge_list include/light/
 media_player: !include_dir_merge_list include/media_player/
 camera: !include_dir_merge_list include/camera/
-input_boolean: !include_dir_merge_named include/input_boolean/
-notify: !include_dir_merge_list include/notify
+notify: !include_dir_merge_list include/notify/
+weather: !include_dir_merge_list include/weather/
+tts: !include_dir_merge_list include/tts/
 # switch: !include_dir_list include/switch/
 # scene: !include_dir_list include/scene/
 # lock: !include_dir_list include/lock/

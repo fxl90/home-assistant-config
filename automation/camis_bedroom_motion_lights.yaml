@@ -54,6 +54,7 @@
 
   action:
 
+    # turn on ceiling fan light
     - service: light.turn_on
       data_template:
         entity_id: light.camis_bedroom_ceiling
@@ -83,6 +84,7 @@
 
   action:
 
+    # turn off all of camis bedroom lights and switches
     - service: homeassistant.turn_off
       data_template:
         entity_id: 

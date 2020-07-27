@@ -1,0 +1,7 @@
+exterior_silverado_sage:
+  sensors:
+    moisture: sensor.xiaomi_miflora_moisture
+    temperature: sensor.xiaomi_miflora_temperature
+    conductivity: sensor.xiaomi_miflora_soil_conductivity
+    brightness: sensor.xiaomi_miflora_illuminance
+  min_moisture: 20
