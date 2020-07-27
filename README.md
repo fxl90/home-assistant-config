@@ -68,7 +68,7 @@ My automations are a combination of yaml and gui based automations. Which method
 
 ### Presence
 - Life360
-- Monitor Script (Raspberry Pi Zero W)
+- Monitor Script (Raspberry Pi Zero W) -> https://github.com/andrewjfreyer/monitor
 - Unifi Wifi
 
 ### Climate
