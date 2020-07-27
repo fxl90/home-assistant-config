@@ -1,51 +1,93 @@
-# Turn off the Camis Bedroom lights
 - alias: Camis Bedroom Pico Off
+  description: Turn off Camis Bedroom Lamp.
   initial_state: True
+  id: 71450016-4d22-4438-b339-360363e160a3
+  mode: single
+
   trigger:
+
+    # Off (4) button is pressed
     - platform: state
       entity_id: sensor.remotes_pico_2
       to: '4'
-  condition:
-    condition: state
-    entity_id: light.camis_bedroom_lamp
-    state: 'on'
-  action:
-    service: light.turn_off
-    entity_id: light.camis_bedroom_lamp
 
-# Brighten the Camis Bedroom lights
+  condition:
+
+    # Camis Bedroom Lamp is on
+    - condition: state
+      entity_id: light.camis_bedroom_lamp
+      state: 'on'
+
+  action:
+
+    # Turn off the lamp
+    - service: light.turn_off
+      entity_id: light.camis_bedroom_lamp
+
 - alias: Camis Bedroom Pico Up
+  description: Brighten Camis Bedroom Lamp.
   initial_state: True
+  id: ead5fb10-b9cb-42b6-82c2-38c65e20b68c
+  mode: single
+
   trigger:
+
+    # Up (8) button is pressed    
     - platform: state
       entity_id: sensor.remotes_pico_2
       to: '8'
-  action:
-    service: light.turn_on
-    data:
-      entity_id: light.camis_bedroom_lamp
-      brightness_step: 15
 
-# Dim the Camis Bedroom lights
+  action:
+
+    # Increase brightness of lamp
+    - service: light.turn_on
+      data:
+        entity_id: light.camis_bedroom_lamp
+        brightness_step: 15
+
 - alias: Camis Bedroom Pico Down
+  description: Dim Camis Bedroom Lamp.
   initial_state: True
+  id: 91d2c251-ed64-47e4-a031-f7107b7c9505
+  mode: single
+
   trigger:
+
+    # Down (16) button is pressed 
     - platform: state
       entity_id: sensor.remotes_pico_2
       to: '16'
-  action:
-    service: light.turn_on
-    data:
-      entity_id: light.camis_bedroom_lamp
-      brightness_step: -15
 
-# Turn on the Camis Bedroom lights
-- alias: Camis Bedroom Pico on
+  action:
+
+    # Dim the lamp
+    - service: light.turn_on
+      data:
+        entity_id: light.camis_bedroom_lamp
+        brightness_step: -15
+
+- alias: Camis Bedroom Pico On
+  description: Turn on Camis Bedroom Lamp.
   initial_state: True
+  id: 46dc78f8-1196-432e-beeb-4665dcbf300d
+  mode: single
+
   trigger:
+
+    # On (1) button is pressed 
     - platform: state
       entity_id: sensor.remotes_pico_2
       to: '1'
+
+  condition:
+
+    # Camis Bedroom Lamp is off
+    - condition: state
+      entity_id: light.camis_bedroom_lamp
+      state: 'off'
+
   action:
-    service: light.turn_on
-    entity_id: light.camis_bedroom_lamp
+
+    # Turn on the lamp
+    - service: light.turn_on
+      entity_id: light.camis_bedroom_lamp

@@ -1,5 +1,8 @@
 - alias: Exterior Driveway Motion Detected On
   initial_state: true
+  description: Run exterior sequence when driveway motion detected.
+  id: 211ab2b1-d8af-4fd1-8b39-0338e7c14120
+  mode: single
 
   trigger:
 
@@ -70,6 +73,9 @@
 
 - alias: Exterior Driveway Motion Detected Off
   initial_state: true
+  description: Turn off outdoor lights when no driveway motion detected for ten minutes.
+  id: a984fdbf-c282-4482-9548-43b50373513b
+  mode: single
 
   trigger:
 
