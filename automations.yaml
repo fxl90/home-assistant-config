@@ -18,7 +18,7 @@
   alias: Master Bathroom Jordan Button Pushed
   description: ''
   trigger:
-  - device_id: 45ef83c513eb4116a910108c4502e7ef
+  - device_id: 6281353bda7644d79427138bbbb9e870
     domain: hubitat
     platform: device
     subtype: '1'
@@ -32,7 +32,7 @@
   alias: Camis Bedroom Button Pushed
   description: ''
   trigger:
-  - device_id: 4e764c49d96a4350affcd5fa43517cdc
+  - device_id: 55329152482d46ce94beb5ac0db60a10
     domain: hubitat
     platform: device
     subtype: '1'
@@ -47,7 +47,7 @@
   alias: Kitchen Sink Button Pushed
   description: ''
   trigger:
-  - device_id: fd3dc5590c05459cbd2bd2ebe614b44a
+  - device_id: b8d13e0a1f554720b71ee6204d05e6d4
     domain: hubitat
     platform: device
     subtype: '1'
