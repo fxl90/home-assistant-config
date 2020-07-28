@@ -77,10 +77,43 @@
 
   condition:
 
-    #  only continue if motion is not disabled?
+    #  only continue if motion is not disabled
     - condition: state
       entity_id: input_boolean.disable_motion_automation
       state: 'off'
+
+    # is camis home mode enabled?
+    - condition: state
+      entity_id: input_boolean.enable_camis_home_mode
+      state: 'off'
+
+    # must be within the times listed
+    - condition: or
+      conditions:
+
+        # must not be between nap time
+        - condition: time
+          after: '08:00:00'
+          before: '12:00:00'
+          weekday:
+            - sat
+            - sun
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+        - condition: time
+          after: '15:30:00'
+          before: '18:30:00'
+          weekday:
+            - sat
+            - sun
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
 
   action:
 

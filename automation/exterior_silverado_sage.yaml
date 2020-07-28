@@ -1,0 +1,26 @@
+- alias: Exterior Silverado Sage Problem
+  description: Send notification when silverado sage needs water.
+  initial_state: true
+  id: face986e-b6cc-412d-8352-62afd35feceb
+  mode: queued
+
+  trigger:
+
+    # trigger when moisture is less than 20
+    - platform: numeric_state
+      entity_id: sensor.xiaomi_miflora_moisture
+      below: 20
+
+  action:
+
+    # send notification
+    - service: notify.mobile_app_pixel_3
+      data_template:
+        title: "WIFE, water the plant!"
+        message: 'Silverado Sage Problem: {{ state_attr("plant.exterior_silverado_sage", "problem") }}'
+
+    # send notification
+    - service: notify.pushover_frank
+      data_template:
+        title: "Plant"
+        message: 'Silverado Sage Problem: {{ state_attr("plant.exterior_silverado_sage", "problem") }}'
