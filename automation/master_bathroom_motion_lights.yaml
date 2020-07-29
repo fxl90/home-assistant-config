@@ -1,0 +1,57 @@
+- alias: Master Bathroom Motion Lights On
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_ac73,binary_sensor.motion_sensor_cdf9
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion_automation
+      state: 'off'
+  action:
+    - service: light.turn_on
+      data_template: 
+        entity_id: >
+          {% if now().hour < 6 or now().hour >= 20 %}
+            light.master_bathroom_vanity
+          {% else %}
+            light.master_bathroom_main
+          {% endif %}
+        brightness: >
+          {% if now().hour < 6 or now().hour >= 20 %}
+            30
+          {% else %}
+            255
+          {% endif %}
+        transition: >
+          {% if now().hour < 6 or now().hour >= 20 %}
+            20
+          {% else %}
+            5
+          {% endif %}
+
+- alias: Master Bathroom Motion Lights Off
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_ac73,binary_sensor.motion_sensor_cdf9
+      to: 'off'
+      for:
+        minutes: 30
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_motion_automation
+      state: 'off'
+  action:
+  - service: light.turn_off
+    data:
+      entity_id:
+        - light.master_bathroom_main
+        - light.master_bathroom_vanity
+        - light.master_bathroom_shower
+        - light.master_bathroom_toilet
+        - switch.master_bathroom_exhaust_fan
+        - switch.master_bathroom_toilet_exhaust_fan
+        - switch.master_bathroom_heater
+        - switch.master_bathroom_exhaust_fan_light

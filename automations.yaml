@@ -96,3 +96,16 @@
   - data: {}
     entity_id: switch.office_ceiling_fan
     service: switch.turn_on
+- id: '1595987567429'
+  alias: Master Bedroom Night Button
+  description: ''
+  trigger:
+  - device_id: 011e8e7f311641939389734c0297ddcd
+    domain: hubitat
+    platform: device
+    subtype: '1'
+    type: double_tapped
+  condition: []
+  action:
+  - scene: scene.master_bedroom_night
+  mode: single
