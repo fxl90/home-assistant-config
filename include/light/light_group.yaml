@@ -18,3 +18,11 @@
     - light.exterior_driveway_bollard_3
     - light.exterior_driveway_bollard_4
     - light.exterior_driveway_bollard_5
+
+- platform: group
+  name: Medicine Reminder
+  entities:
+    - light.office_lamp
+    - light.master_bedroom_jordans_lamp
+    - light.living_room_lamp_1
+    - light.living_room_lamp_2

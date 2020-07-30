@@ -1,6 +1,3 @@
-# - platform: ffmpeg
-#   name: Camis Bedroom
-#   input: !secret dafang_rtsp_cami
 - platform: generic
   name: Garage
   still_image_url: !secret dafang_garage_still_image

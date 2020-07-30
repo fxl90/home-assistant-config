@@ -1,0 +1,39 @@
+medicine_reminder_lights_flash:
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.medicine_reminder
+        flash: long
+        rgb_color: [252,3,3]
+
+medicine_reminder_lights_flash_off:
+  sequence:
+    service: script.turn_off
+    entity_id: script.medicine_reminder_lights_flash_on, script.medicine_reminder_lights_flash_followup
+
+medicine_reminder_lights_flash_on:
+  sequence:
+    - service: script.medicine_reminder_lights_flash
+    - delay:
+        seconds: 15
+    - service: script.medicine_reminder_lights_flash_followup
+
+medicine_reminder_lights_flash_followup:
+  sequence:
+    - service: script.medicine_reminder_lights_flash
+    - delay:
+        seconds: 15
+    - service: script.medicine_reminder_lights_flash_on
+
+medicine_taken_turn_off:
+  sequence:
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.medicine_taken
+
+medicine_not_taken:
+  sequence:
+    - service: notify.mobile_app_pixel_3
+      data_template:
+        title: "Bad wife!"
+        message: 'You did not take your medicine today!'

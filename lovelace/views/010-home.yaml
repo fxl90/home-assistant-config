@@ -253,6 +253,7 @@ cards:
           - entity_id: "*bollard*"
           - entity_id: "*group*"
           - entity_id: "switch.laundry_washer*"
+          - entity_id: "*medicine*"
         show_empty: false
         unique: true
         sort:

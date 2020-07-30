@@ -1,0 +1,176 @@
+- alias: Medicine Reminder
+  description: Remind family to take medication.
+  id: 76e0d936-5da5-4a18-9842-b5ed1dd28bc5
+  mode: single
+  initial_state: true
+
+  trigger:
+
+    # there is motion in the kitchen
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_05b2
+      from: 'off'
+      to: 'on'
+
+    # there is motion in the living room
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_83d4
+      from: 'off'
+      to: 'on'
+
+  condition:
+
+    # jordan must be home
+    - condition: state
+      entity_id: person.jordan_lamas
+      state: 'home'
+
+    # medicine has not been taken
+    - condition: state
+      entity_id: input_boolean.medicine_taken
+      state: 'off'
+
+    # it is after 8 on weekdays
+    # it is after 8:30 on weekends
+    - condition: or
+      conditions:
+
+      - condition: time
+        after: '08:00:00'
+        before: '17:00:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+      - condition: time
+        after: '08:30:00'
+        before: '17:00:00'
+        weekday:
+          - sat
+          - sun
+
+
+  action:
+
+    # send notification telling jordan to take medicine
+    - service: notify.mobile_app_pixel_3
+      data_template:
+        title: "WIFE, take your medicine!"
+        message: "My beautiful wife, please take your blood pressure medicine."
+
+    # store current state of lights  
+    - service: scene.create
+      data:
+        scene_id: before
+        snapshot_entities:
+          - light.medicine_reminder
+
+    # flash living room and master bedroom lights
+    - service: script.turn_on
+      entity_id: script.medicine_reminder_lights_flash_on
+
+    # tell jordan to take meds
+    - service: tts.google_translate_say
+      entity_id: media_player.kitchen_speakers
+      data:
+        message: "Jordan Elizabeth Lamas take your medicine"
+
+
+- id: 7febf668-0d27-422d-8b52-65f7df477fe4
+  alias: Medicine Reminder Complete
+  description: Medicine has been taken and mark as complete.
+  mode: single
+  initial_state: true
+
+  trigger:
+
+    # medicine cabinet is opened
+    - platform: state
+      entity_id: binary_sensor.kitchen_cabinet_contact
+      from: 'off'
+      to: 'on'
+
+  condition:
+
+    # jordan is home
+    - condition: state
+      entity_id: person.jordan_lamas
+      state: 'home'
+
+    # medicine has not been taken
+    - condition: state
+      entity_id: input_boolean.medicine_taken
+      state: 'off'
+
+    # it is after 8 on weekdays
+    # it is after 8:30 on weekends
+    - condition: or
+      conditions:
+
+      - condition: time
+        after: '08:00:00'
+        before: '17:00:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+      - condition: time
+        after: '08:30:00'
+        before: '17:00:00'
+        weekday:
+          - sat
+          - sun
+
+  action:
+
+    # set medicine to taken
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.medicine_taken
+
+    # turn off the flashing lights
+    - service: script.turn_on
+      entity_id: script.medicine_reminder_lights_flash_off
+
+    # wait five minutes
+    - delay:
+        seconds: 5
+
+    # set lights to previous state
+    - service: scene.turn_on
+      entity_id: scene.before
+
+    # tell jordan she is a good wife
+    - service: notify.mobile_app_pixel_3
+      data_template:
+        title: "Good wife!"
+        message: "That's a good wife, you deserve a treat!"
+
+        
+- id: 58548d3a-8bbb-4764-b4fe-cd227e0c5c52
+  alias: Medicine Reminder Reset
+  description: Reset medicine reminder at night.
+  mode: single
+  initial_state: true
+
+  trigger:
+
+    # run this at midnight
+    - platform: time
+      at: "21:00:00"
+
+  action:
+
+    # if taken turn off input boolean, else send reminder
+    - service: script.turn_on
+      data_template: 
+        entity_id: >
+          {% if is_state('input_boolean.medicine_taken','on') %}
+            script.medicine_taken_turn_off
+          {% else %}
+            script.medicine_not_taken
+          {% endif %}

@@ -1,6 +1,6 @@
 - platform: androidtv
   name: Master Bedroom Shield TV
-  host: $secret android_tv_master_bedroom
+  host: !secret android_tv_master_bedroom
   device_class: androidtv
   exclude_unnamed_apps: true
   apps:
