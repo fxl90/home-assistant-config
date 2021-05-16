@@ -15,6 +15,7 @@ My automations are a combination of yaml and gui based automations. Which method
 - Unifi UAP-AC-PRO
 - Unifi UAP-AC-LITE x 2
 - Unifi 24 Port POE Switch
+
 #### Hubs
 | Hub  | Usage |
 | ------------- | ------------- |
@@ -22,29 +23,36 @@ My automations are a combination of yaml and gui based automations. Which method
 | Lutron Smart Bridge  | Home Assistant, Homekit  |
 | Philips Hue Bridge  | Home Assistant, Homekit  |
 | Hubitat Hub  | Home Assistant, Homebridge  |
-| Aqara Hub  | Home Assistant, Homekit  |
+| Aqara Hub  | Homekit  |
 
 ### Lights
-- Lutron Dimmers
-- Philips Hue Color Bulbs
-- Nanoleaf Essentials
+| Type  | Usage |
+| ------------- | ------------- |
+| Lutron Dimmers  | Home Assistant, Homekit |
+| Philips Hue Color Bulbs | Home Assistant, Homekit  |
+| Nanoleaf Essentials | Homekit  |
 
 ### Switches
-- Lutron ON/OFF Switches
-- Lutron Smart Lamp Switches
-- Ikea Smart Plugs
-- Aqara Smart Plugs
-- Innoveli Outdoor Z-Wave Plus Plug
-- GE Outdoor Z-Wave Plus Plug
+| Type  | Usage |
+| ------------- | ------------- |
+| Lutron ON/OFF Switches  | Home Assistant, Homekit |
+| Lutron Smart Lamp Switches | Home Assistant, Homekit  |
+| Ikea Smart Plugs | Home Assistant |
+| Aqara Smart Plugs  | Home Assistant |
+| Innoveli Outdoor Z-Wave Plus Plug | Home Assistant, Hubitat, Homebridge  |
+| GE Outdoor Z-Wave Plus Plug| Home Assistant, Hubitat, Homebridge  |
 
 ### Sensors
-- Philips Hue Motion Sensors
-- Xiaomi Aqara Humidity/Temperature Sensors
-- Xiaomi Aqara Motion Sensors
-- Xiaomi Aqara Contact Sensors
-- Xiaomi Aqara Leak Sensors
-- SmartThings Leak Sensors
-- ESPHome/Tasmota Multi Sensors
+| Type  | Usage |
+| ------------- | ------------- |
+| Philips Hue Motion Sensors  | Home Assistant |
+| Xiaomi Aqara Humidity/Temperature Sensors | Home Assistant |
+| Xiaomi Aqara Motion Sensors |Home Assistant |
+| Xiaomi Aqara Contact Sensors  | Home Assistant  |
+| Xiaomi Aqara Leak Sensors | Home Assistant  |
+| SmartThings Leak Sensors | Home Assistant  |
+| ESPHome/Tasmota Multi Sensors | Home Assistant  |
+| Ecobee Occupancy/Temperature Sensor  | Home Assistant, Homekit |
 
 ### Buttons
 - Lutron Picos
