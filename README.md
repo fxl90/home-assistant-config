@@ -10,43 +10,48 @@ My automations are a combination of yaml and gui based automations. Which method
 
 ## Devices
 ### Hardware
-- Intel Nuc Gen7 i3
+#### Network
 - Unifi UAP-AC-PRO
 - Unifi UAP-AC-LITE x 2
 - Unifi 24 Port POE Switch
-- Hubitat Hub
+#### Hubs
+- Intel Nuc Gen7 i3
 - Lutron Smart Bridge
 - Philips Hue Bridge
-- Wyze Sensor Bridge
+- Hubitat Hub
 - Aqara Hub
 
 ### Lights
 - Lutron Dimmers
 - Philips Hue Color Bulbs
-- Ikea Tradfri Color Bulbs
+- Nanoleaf Essentials
 
 ### Switches
 - Lutron ON/OFF Switches
 - Lutron Smart Lamp Switches
-- TP-Link Mini Plugs
-- TP-Link Energy Monitoring Plug
-- TP-Link Outdoor Plug
 - Ikea Smart Plugs
 - Aqara Smart Plugs
-- GE Dual Z-Wave Plus Plug
 - Innoveli Outdoor Z-Wave Plus Plug
+- GE Outdoor Z-Wave Plus Plug
 
 ### Sensors
-- Wyze Motion Sensors
-- Wyze Contact Sensors
-- Xiaomi Aqara Humidity/Temperature Sensor
+- Philips Hue Motion Sensors
+- Xiaomi Aqara Humidity/Temperature Sensors
 - Xiaomi Aqara Motion Sensors
 - Xiaomi Aqara Contact Sensors
 - Xiaomi Aqara Leak Sensors
 - SmartThings Leak Sensors
 - ESPHome/Tasmota Multi Sensors
 
+### Buttons
+- Lutron Picos
+- Aqara Buttons
+- Smartthings Buttons
+- Flic Buttons
+- Zooz Z-wave Remote
+
 ### Smart Speakers
+- Apple HomePod Mini
 - Google Home Mini
 - Google Home Hub
 - Alexa Echo Dot
@@ -54,21 +59,23 @@ My automations are a combination of yaml and gui based automations. Which method
 ### Camera
 - Unifi G3
 - Google Nest Hello
-- Dafang Camera
+- Dahua
+- Amcrest
 
 ### Security
 - SimpliSafe
 
 ### Media
-- Nvidia Shield TV
+- Chromecast with Google TV
 - Sony Android TV
 - Chromecast Audio
-- Roku
+- Roku TV
 - Vizio TV
+- LG WebOS TV
 
 ### Presence
-- Life360
-- Monitor Script (Raspberry Pi Zero W) -> https://github.com/andrewjfreyer/monitor
+- Home Assistant
+- Apple iCloud
 - Unifi Wifi
 
 ### Climate
