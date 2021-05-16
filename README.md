@@ -11,15 +11,18 @@ My automations are a combination of yaml and gui based automations. Which method
 ## Devices
 ### Hardware
 #### Network
+- Unifi Gateway
 - Unifi UAP-AC-PRO
 - Unifi UAP-AC-LITE x 2
 - Unifi 24 Port POE Switch
 #### Hubs
-- Intel Nuc Gen7 i3
-- Lutron Smart Bridge
-- Philips Hue Bridge
-- Hubitat Hub
-- Aqara Hub
+| Hub  | Usage |
+| ------------- | ------------- |
+| Intel Nuc Gen7 i3  | Home Assistant, Homebridge |
+| Lutron Smart Bridge  | Home Assistant, Homekit  |
+| Philips Hue Bridge  | Home Assistant, Homekit  |
+| Hubitat Hub  | Home Assistant, Homebridge  |
+| Aqara Hub  | Home Assistant, Homekit  |
 
 ### Lights
 - Lutron Dimmers
